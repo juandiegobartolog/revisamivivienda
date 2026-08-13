@@ -1,0 +1,25 @@
+# Local / production configuration
+/config/config.php
+.env
+.env.*
+!.env.example
+
+# User-generated uploads
+/uploads/*
+!/uploads/.htaccess
+!/uploads/.gitkeep
+
+# Logs / temporary files
+*.log
+/storage/logs/*
+/tmp/*
+/cache/*
+
+# IDE / OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Dependencies (if Composer is added later)
+/vendor/

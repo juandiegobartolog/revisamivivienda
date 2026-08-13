@@ -1,0 +1,1 @@
+<?php require __DIR__.'/app/bootstrap.php'; header('Content-Type: application/json'); $id=(int)($_GET['department_id']??0); $st=db()->prepare('SELECT id,name FROM municipalities WHERE department_id=? AND is_enabled_for_reports=1 ORDER BY name');$st->execute([$id]);echo json_encode($st->fetchAll());
