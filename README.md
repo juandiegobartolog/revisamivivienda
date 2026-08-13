@@ -1,164 +1,355 @@
-# Revisa Mi Vivienda
+# 🏠 Revisa Mi Vivienda
 
-**Revisa Mi Vivienda** es una plataforma web comunitaria y gratuita para registrar inmuebles afectados por eventos sísmicos, organizar casos pendientes de revisión y facilitar la colaboración de ingenieros civiles, arquitectos y otros profesionales voluntarios.
+**Plataforma ciudadana y open source para registrar, visibilizar y facilitar la revisión inicial de inmuebles afectados por desastres.**
 
-Sitio del proyecto: **https://revisamivivienda.co**
+🌐 Proyecto desplegado: https://revisamivivienda.co
 
-## Propósito
+> **Estado del proyecto:** versión pública estable.
+> Este repositorio se publica como código abierto para que pueda ser reutilizado, adaptado o continuado por terceros. Actualmente no cuenta con mantenimiento activo ni soporte técnico por parte del autor original.
 
-La plataforma busca dar visibilidad y trazabilidad a inmuebles afectados que aún necesitan una revisión inicial. Permite:
+---
 
-- registrar una vivienda o inmueble afectado;
-- adjuntar evidencia fotográfica;
-- clasificar prioridad y ubicación;
-- filtrar reportes por departamento, municipio, prioridad y estado;
-- registrar revisores;
-- tomar casos disponibles;
-- dejar una evaluación o diagnóstico inicial;
-- mantener un historial público del proceso.
+## Sobre el proyecto
 
-> **Importante:** este proyecto no reemplaza, sustituye ni pretende cubrir inspecciones, evaluaciones o revisiones oficiales realizadas por alcaldías, organismos de gestión del riesgo, entidades públicas u otras autoridades competentes. Tampoco emite certificaciones de seguridad, estabilidad o habitabilidad. Es una herramienta colaborativa y complementaria.
+**Revisa Mi Vivienda** nació en Dosquebradas, Risaralda, Colombia, después del sismo de agosto de 2026 y de las afectaciones que dejó en diferentes ciudades y municipios.
 
-## Tecnología
+La idea surgió a partir de una necesidad concreta: muchas viviendas presentan daños visibles y no siempre logran recibir atención inmediata, mientras ingenieros civiles, arquitectos y otros profesionales ofrecen voluntariamente su tiempo para apoyar procesos de revisión inicial.
 
-- PHP 8.x
-- MySQL / MariaDB
-- HTML5
-- CSS3
-- Bootstrap 5
-- JavaScript ES6
-- PDO
+El propósito de la plataforma es ayudar a:
 
-No requiere un framework PHP.
+* Registrar inmuebles afectados.
+* Centralizar información.
+* Dar visibilidad a casos pendientes.
+* Priorizar necesidades.
+* Facilitar el contacto entre ciudadanos y profesionales voluntarios.
+* Mantener trazabilidad sobre el estado de cada caso.
 
-## Estructura
+---
+
+## ⚠️ Importante
+
+**Revisa Mi Vivienda no reemplaza, sustituye ni pretende cubrir las inspecciones, evaluaciones o revisiones oficiales realizadas por alcaldías, organismos de Gestión del Riesgo, entidades públicas, organismos de emergencia u otras autoridades competentes.**
+
+La plataforma:
+
+* No certifica que una vivienda sea segura.
+* No emite certificados de habitabilidad.
+* No reemplaza una evaluación estructural oficial.
+* No sustituye los canales de emergencia.
+* No garantiza que un caso sea atendido por un profesional.
+* No debe utilizarse como mecanismo de respuesta ante una emergencia inmediata.
+
+Las evaluaciones registradas en la plataforma deben entenderse únicamente como **observaciones o diagnósticos iniciales de carácter colaborativo**.
+
+Ante un riesgo inmediato de colapso, desprendimientos, incendio, fuga de gas, personas heridas u otra situación de emergencia, se deben utilizar los canales oficiales correspondientes.
+
+---
+
+## ¿Cómo funciona?
+
+### Para ciudadanos
+
+Una persona puede:
+
+1. Seleccionar departamento y municipio.
+2. Registrar barrio, sector y dirección.
+3. Describir los daños observados.
+4. Indicar una prioridad percibida.
+5. Responder preguntas básicas sobre señales visibles.
+6. Cargar evidencias fotográficas.
+7. Registrar información de contacto.
+8. Publicar el reporte.
+
+Los datos sensibles, como dirección exacta, teléfono y correo electrónico, no se muestran públicamente.
+
+---
+
+### Para revisores
+
+Ingenieros civiles, arquitectos u otros profesionales pueden:
+
+1. Crear una cuenta.
+2. Registrar su profesión y datos profesionales.
+3. Consultar inmuebles pendientes.
+4. Filtrar casos por ubicación y prioridad.
+5. Tomar un caso disponible.
+6. Contactar al ciudadano.
+7. Registrar el progreso de la revisión.
+8. Publicar una evaluación o diagnóstico inicial.
+
+---
+
+## Prioridades
+
+Los reportes pueden clasificarse como:
+
+* 🔴 **Urgente**
+* 🟠 **Alta**
+* 🟡 **Media**
+* 🟢 **Baja**
+
+La prioridad representa una **necesidad de atención**, no un diagnóstico técnico ni una certificación estructural.
+
+---
+
+## Estados de un caso
+
+Un reporte puede pasar por estados como:
 
 ```text
-app/                 Lógica compartida, sesión, PDO, helpers y renderizado
-config/              Configuración local/producción
-scripts/             Utilidades CLI y tareas programadas
-sql/                 Esquema y datos iniciales
-uploads/             Evidencias cargadas (ignoradas por Git)
-assets/              CSS y JavaScript
-index.php             Homepage y listado público
-report.php            Registro de afectaciones
-case.php              Detalle público del reporte
-reviewer.php          Panel del revisor
-review-case.php       Gestión y evaluación del caso
-admin.php             Administración básica
+Pendiente
+↓
+Asignado
+↓
+Contactado
+↓
+Visita programada
+↓
+En revisión
+↓
+Revisado
 ```
 
-## Instalación local / servidor
-
-### 1. Crear la base de datos
-
-Crea una base MySQL/MariaDB y ejecuta:
+También existen estados adicionales:
 
 ```text
-sql/schema.sql
+Requiere segunda opinión
+Derivado a una autoridad
+Cerrado
 ```
 
-Después puedes cargar ubicaciones iniciales con:
+---
+
+## Privacidad
+
+El proyecto fue diseñado siguiendo un principio básico de separación entre información pública y privada.
+
+### Información pública
+
+Puede incluir:
+
+* Departamento.
+* Municipio.
+* Barrio o sector.
+* Descripción del daño.
+* Fotografías autorizadas.
+* Prioridad.
+* Estado.
+* Fecha del reporte.
+* Evaluación publicada.
+* Nombre del revisor cuando corresponda.
+
+### Información restringida
+
+No se publica:
+
+* Dirección exacta.
+* Teléfono.
+* Correo electrónico.
+* Información privada de contacto.
+
+Estos datos deben estar disponibles únicamente para usuarios autorizados cuando sean necesarios para gestionar un caso.
+
+El proyecto fue concebido teniendo en cuenta la normativa colombiana sobre protección de datos personales, incluida la **Ley 1581 de 2012**.
+
+---
+
+## Tecnologías
+
+### Backend
+
+* PHP 8+
+* MySQL / MariaDB
+* PDO
+
+### Frontend
+
+* HTML5
+* CSS3
+* Bootstrap 5
+* Vanilla JavaScript
+* Fetch API / AJAX
+
+### Infraestructura
+
+La implementación original fue construida para funcionar en hosting PHP convencional con MySQL.
+
+Las evidencias fotográficas pueden almacenarse inicialmente en filesystem local y posteriormente migrarse a servicios como:
+
+* Cloudflare R2
+* Amazon S3
+* DigitalOcean Spaces
+
+---
+
+## Estructura del proyecto
 
 ```text
-sql/seed_locations_initial.sql
+/
+├── app/
+├── assets/
+├── config/
+│   └── config.example.php
+├── scripts/
+├── sql/
+│   ├── schema.sql
+│   └── seed_locations_initial.sql
+├── uploads/
+│
+├── index.php
+├── report.php
+├── case.php
+├── reviewer.php
+├── reviewer-register.php
+├── review-case.php
+├── take-case.php
+├── login.php
+├── logout.php
+├── admin.php
+└── api-municipalities.php
 ```
 
-### 2. Configurar la aplicación
+---
 
-Copia:
+## Instalación
+
+### 1. Clonar el repositorio
+
+```bash
+git clone <URL-DEL-REPOSITORIO>
+cd revisamivivienda
+```
+
+### 2. Crear el archivo de configuración
+
+Copiar:
 
 ```bash
 cp config/config.example.php config/config.php
 ```
 
-Edita `config/config.php` con tus datos reales:
+y configurar las credenciales de MySQL.
 
-```php
-'db' => [
-    'host' => 'localhost',
-    'name' => 'nombre_base_datos',
-    'user' => 'usuario_base_datos',
-    'pass' => 'contraseña',
-    'charset' => 'utf8mb4',
-],
-```
+### 3. Crear las tablas
 
-`config/config.php` está excluido mediante `.gitignore` y **nunca debe publicarse en GitHub**.
-
-### 3. Permisos de uploads
-
-El servidor PHP debe poder escribir en:
+Ejecutar:
 
 ```text
-uploads/
+sql/schema.sql
 ```
 
-### 4. Crear administrador
+dentro de una base de datos MySQL existente.
 
-Desde CLI:
+### 4. Cargar ubicaciones iniciales
 
-```bash
-php scripts/create-admin.php admin@ejemplo.com "UnaContraseñaSegura" "Administrador"
-```
-
-### 5. Cron de asignaciones
-
-Para liberar asignaciones vencidas puedes ejecutar periódicamente:
-
-```bash
-php scripts/cron-release.php
-```
-
-En Hostinger puede configurarse mediante Cron Jobs en hPanel.
-
-## Flujo principal
+Ejecutar:
 
 ```text
-Ciudadano
-   ↓
-Registra inmueble afectado
-   ↓
-Reporte pendiente
-   ↓
-Revisor registrado
-   ↓
-Toma el caso
-   ↓
-Contacto / visita / revisión
-   ↓
-Evaluación inicial
-   ↓
-Caso revisado
+sql/seed_locations_initial.sql
 ```
 
-## Privacidad
+Los municipios habilitados para recibir reportes pueden modificarse desde la base de datos o desde la administración de la aplicación.
 
-La aplicación diferencia datos públicos y privados. Por diseño, datos como dirección exacta, teléfono y correo del reportante no deben mostrarse públicamente y se reservan para roles autorizados y el revisor asignado.
+### 5. Configurar permisos
 
-Las personas responsables de desplegar una instancia deben revisar y adaptar sus políticas de privacidad, tratamiento de datos, retención y consentimiento a la legislación aplicable.
+El directorio de evidencias debe tener permisos de escritura para PHP:
+
+```text
+/uploads/
+```
+
+### 6. Usar HTTPS
+
+En producción se recomienda utilizar siempre HTTPS.
+
+---
 
 ## Seguridad
 
-La aplicación incluye, entre otros:
+La aplicación incluye o contempla:
 
-- consultas preparadas con PDO;
-- hashing de contraseñas;
-- protección CSRF;
-- sesiones y control de roles;
-- validación de uploads;
-- identificadores públicos no secuenciales;
-- separación de datos públicos y privados;
-- historial de eventos.
+* Prepared statements con PDO.
+* Protección CSRF.
+* Escape de contenido para prevenir XSS.
+* Password hashing.
+* Validación de roles.
+* Validación MIME de fotografías.
+* Restricciones de tamaño de archivos.
+* Nombres aleatorios para evidencias.
+* Separación entre datos públicos y privados.
+* Historial de eventos.
+* Restricciones de acceso administrativo.
 
-Antes de utilizarla a gran escala se recomienda realizar una revisión de seguridad independiente.
+Antes de utilizar este proyecto en un escenario de alta escala, institucional o misión crítica, se recomienda realizar una auditoría independiente de seguridad, privacidad y arquitectura.
 
-## Open source
+---
 
-El proyecto se publica para que pueda ser auditado, mejorado y adaptado. Aunque nació como respuesta a afectaciones por un sismo en Colombia, la arquitectura puede evolucionar para apoyar el registro y seguimiento de daños causados por otros tipos de desastres.
+## Más allá de los sismos
 
-Las contribuciones son bienvenidas. Consulta [CONTRIBUTING.md](CONTRIBUTING.md).
+Aunque **Revisa Mi Vivienda** nació como respuesta a una emergencia sísmica en Colombia, su concepto puede adaptarse a otros tipos de eventos.
+
+Por ejemplo:
+
+* Inundaciones.
+* Deslizamientos.
+* Huracanes.
+* Vendavales.
+* Incendios.
+* Daños derivados de otras emergencias o desastres.
+
+El código se publica con la intención de que pueda servir como punto de partida para soluciones de mayor alcance.
+
+---
+
+## Uso y continuidad del proyecto
+
+La versión publicada representa el alcance final desarrollado originalmente para esta iniciativa.
+
+**No existe actualmente un compromiso de mantenimiento, soporte técnico, desarrollo de nuevas funcionalidades o revisión de Pull Requests por parte del autor original.**
+
+Quien considere útil el proyecto puede:
+
+* Hacer un fork.
+* Modificarlo.
+* Adaptarlo a otras ciudades o países.
+* Mejorar su arquitectura.
+* Ampliarlo para otros tipos de desastres.
+* Integrarlo con plataformas institucionales.
+* Convertirlo en una iniciativa de mayor escala.
+
+La intención al liberar el código es permitir que la idea pueda continuar de forma independiente si otras personas, organizaciones o comunidades encuentran valor en ella.
+
+---
+
+## Origen
+
+Este proyecto fue creado de manera independiente desde **Dosquebradas, Risaralda, Colombia**, como una iniciativa ciudadana para aportar desde el desarrollo de software durante una situación de emergencia.
+
+No representa ni está afiliado oficialmente con ninguna alcaldía, organismo gubernamental, entidad de Gestión del Riesgo, organismo de emergencia o entidad pública.
+
+---
+
+## Tecnología con propósito
+
+La idea parte de algo sencillo:
+
+> **Usar lo que sabemos hacer para ayudar cuando nuestra comunidad lo necesita.**
+
+Si este código puede servir para mejorar la iniciativa original o convertirse en la base de algo más grande, habrá cumplido una parte importante de su propósito.
+
+---
 
 ## Licencia
 
-MIT. Consulta [LICENSE](LICENSE).
+Este proyecto se distribuye bajo la licencia **MIT**.
+
+Puedes utilizarlo, modificarlo y distribuirlo de acuerdo con los términos establecidos en el archivo `LICENSE`.
+
+---
+
+## Proyecto
+
+**Revisa Mi Vivienda**
+https://revisamivivienda.co
+
+Dosquebradas, Risaralda — Colombia 🇨🇴
